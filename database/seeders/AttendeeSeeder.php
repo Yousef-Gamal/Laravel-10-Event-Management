@@ -17,7 +17,6 @@ class AttendeeSeeder extends Seeder
 
         foreach($users as $user){
             $eventToAttendee = $users->random(rand(1,3));
-
             foreach($eventToAttendee as $event){
                 \App\Models\Attendee::factory()->create([
                     'user_id' => $user->id,
