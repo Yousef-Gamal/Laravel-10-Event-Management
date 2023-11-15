@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\Api\{EventController,AtendeeController};
+use \App\Http\Controllers\Api\{EventController,AtendeeController,AuthController};
 
 
 /*
@@ -19,6 +19,7 @@ use \App\Http\Controllers\Api\{EventController,AtendeeController};
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('login',[AuthController::class,'login']);
 
 Route::apiResource('events',EventController::class);
 // you don't really need to pass the parameters because laravel already know the relationship between them
