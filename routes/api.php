@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('login',[AuthController::class,'login']);
-
+Route::post('logout',[AuthController::class,'logout'])->middleware('auth:sanctum');
 Route::apiResource('events',EventController::class);
 // you don't really need to pass the parameters because laravel already know the relationship between them
 //Route::apiResource('events.attendees',AtendeeController::class)->scoped(['attendee' => 'event']);

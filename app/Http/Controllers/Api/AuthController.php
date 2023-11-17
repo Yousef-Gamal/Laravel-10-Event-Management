@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use \Illuminate\Http\JsonResponse;
 use Psy\Util\Json;
 
 //use Nette\Schema\ValidationException;
@@ -39,7 +40,12 @@ class AuthController extends Controller
             'token' => $token
         ]);
     }
-    public function logout(Request $request){
+    public function logout(Request $request): JsonResponse
+    {
+        $request->user()->tokens()->delete();
 
+        return response()->json([
+            'message' => 'Logged out successfully'
+        ]);
     }
 }
