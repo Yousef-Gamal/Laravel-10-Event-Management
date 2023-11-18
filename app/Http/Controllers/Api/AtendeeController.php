@@ -15,6 +15,7 @@ class AtendeeController extends Controller
 
     public function __Construct(){
         $this->middleware('auth:sanctum')->except(['index','show','update']);
+        $this->authorizeResource(Attendee::class,'attendee');
     }
     public function index(Event $event)
     {
@@ -44,7 +45,7 @@ class AtendeeController extends Controller
 
     public function destroy(Event $event,Attendee $attendee)
     {
-        $this->authorize('delete-attendee',[$event,$attendee]);
+//        $this->authorize('delete-attendee',[$event,$attendee]); Now, we are using policies
 
         $attendee->delete();
 
