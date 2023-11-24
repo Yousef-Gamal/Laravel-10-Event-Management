@@ -15,6 +15,10 @@ class AtendeeController extends Controller
 
     public function __Construct(){
         $this->middleware('auth:sanctum')->except(['index','show','update']);
+//        $this->middleware('throttle:60,1')
+//            ->only('store','update','destroy'); // Throttle api (Rate limiting) 60 Request per 1 minute
+        $this->middleware('throttle:api')
+            ->only('store','update','destroy'); // using the rate limiter api made by laravel in Route service provider
         $this->authorizeResource(Attendee::class,'attendee');
     }
     public function index(Event $event)
